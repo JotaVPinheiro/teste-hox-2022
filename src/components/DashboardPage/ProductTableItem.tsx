@@ -2,11 +2,17 @@ import { Pen, Trash } from "phosphor-react";
 
 interface ProductProps {
   name: string
-  dueDate: Date | null
+  manufacturedDate: Date
+  expirationDate: Date | null
   price: number
 }
 
-export function ProductTableItem({ name, dueDate, price }: ProductProps) {
+export function ProductTableItem({
+  name, 
+  manufacturedDate,
+  expirationDate, 
+  price
+}: ProductProps) {
 
   function formatDate(date: Date | null): string {
     if(date == null)
@@ -44,7 +50,10 @@ export function ProductTableItem({ name, dueDate, price }: ProductProps) {
         {name}
       </td>
       <td>
-        {formatDate(dueDate)}
+        {formatDate(manufacturedDate)}
+      </td>
+      <td>
+        {formatDate(expirationDate)}
       </td>
       <td>
         {formatPrice(price)}

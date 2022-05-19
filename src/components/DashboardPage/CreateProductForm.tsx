@@ -12,11 +12,14 @@ export function CreateProductForm() {
             type="text"
             placeholder="Nome do produto"
           />
+          <label htmlFor="manufacturedDate">Data de fabricação</label>
+          <input id="manufacturedDate" name="manufacturedDate" type="date" />
           <div className="flex items-center gap-3">
             <label htmlFor="perishable">O produto é perecível?</label>
             <input id="perishable" name="perishable" type="checkbox"/>
           </div>
-            <input type="date" disabled/>
+            <label htmlFor="expirationDate">Data de vencimento</label>
+            <input id="expirationDate" name="expirationDate" type="date" disabled/>
           <input type="number" placeholder="Preço"/>
           <button type="submit">Cadastrar</button>
       </fieldset>
