@@ -2,7 +2,7 @@ import { ProductTableItem } from "./ProductTableItem";
 
 export function ProductTable() {
   return (
-    <table className="w-full table-auto border-collapse text-left">
+    <table className="w-full h-min table-auto border-collapse text-left">
       <thead className="pl-">
         <tr className="bg-slate-700 h-8 ">
           <th>Produto</th>

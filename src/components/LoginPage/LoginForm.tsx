@@ -11,16 +11,16 @@ export function LoginForm() {
             name="email" 
             type="text"
             placeholder="E-mail"
-            className="w-full h-12 rounded-full border-2 border-emerald-500 
-              text-sm text-white p-3 bg-transparent placeholder:text-sm outline-none" 
+            className="w-full rounded-full border-2 border-emerald-500 text-sm 
+            text-white p-3 bg-transparent placeholder:text-sm outline-none" 
           />
           <input
             id="password" 
             name="password" 
             type="text"
             placeholder="Senha"
-            className="w-full h-12 rounded-full border-2 border-emerald-500 
-              text-sm text-white p-3 bg-transparent placeholder:text-sm outline-none" 
+            className="w-full rounded-full border-2 border-emerald-500 text-sm 
+            text-white p-3 bg-transparent placeholder:text-sm outline-none" 
           />
           <button
             type="submit"
