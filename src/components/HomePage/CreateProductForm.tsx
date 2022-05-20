@@ -50,6 +50,7 @@ export function CreateProductForm() {
           name="manufacturedDate"
           type="date"
           value={values.manufacturedDate}
+          max={values.expirationDate}
           onChange={onChange}
           required
         />

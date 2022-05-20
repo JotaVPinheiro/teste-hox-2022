@@ -2,7 +2,7 @@ import { CreateProductForm } from "./CreateProductForm";
 import { PageHeader } from "./PageHeader";
 import { ProductsTable } from "./ProductsTable";
 
-export function DashboardPage() {
+export function HomePage() {
   return (
     <>
       <PageHeader />

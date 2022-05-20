@@ -1,6 +1,12 @@
+import { api } from "../../lib/api";
 import { ProductsTableItem } from "./ProductsTableItem";
 
 export function ProductsTable() {
+
+  function getProducts() {
+    const products = api.get('/products')
+  }
+
   return (
     <table className="w-full h-min table-auto border-collapse text-left">
       <thead className="pl-">

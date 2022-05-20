@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { DashboardPage } from "./components/DashboardPage";
+import { HomePage } from "./components/HomePage";
 import { LoginPage } from "./components/LoginPage";
 import { selectUser } from "./redux/userSlice";
 
@@ -24,7 +24,7 @@ export function Router() {
           path="/"
           element={
             <PrivateRoute>
-              <DashboardPage />
+              <HomePage />
             </PrivateRoute>
           }
         />
