@@ -17,7 +17,6 @@ export function LoginForm() {
     const token = verifyLogin(values);
 
     if (!token) {
-      event.preventDefault();
       setValues(initialState);
       return;
     }
