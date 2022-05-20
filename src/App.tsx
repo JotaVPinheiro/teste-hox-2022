@@ -1,13 +1,7 @@
-import { DashboardPage } from "./components/DashboardPage"
-import { LoginPage } from "./components/LoginPage"
+import { Router } from "./router"
 
 function App() {
-  return (
-    <>
-      {/* <LoginPage></LoginPage> */}
-      <DashboardPage></DashboardPage>
-    </>
-  )
+  return <Router />
 }
 
 export default App
