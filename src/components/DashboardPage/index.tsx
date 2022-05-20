@@ -3,7 +3,7 @@ import { PageHeader } from "./PageHeader";
 import { ProductTable } from "./ProductTable";
 
 export function DashboardPage() {
-  return(
+  return (
     <>
       <PageHeader />
       <div className="w-screen h-full bg-blue-500 flex">
@@ -13,5 +13,5 @@ export function DashboardPage() {
         </div>
       </div>
     </>
-  )
+  );
 }

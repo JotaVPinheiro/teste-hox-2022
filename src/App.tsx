@@ -1,7 +1,5 @@
-import { Router } from "./router"
+import { Router } from "./Router";
 
-function App() {
-  return <Router />
-}
+const App = () => <Router />;
 
-export default App
+export default App;

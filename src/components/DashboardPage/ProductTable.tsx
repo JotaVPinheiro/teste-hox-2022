@@ -14,25 +14,25 @@ export function ProductTable() {
         </tr>
       </thead>
       <tbody>
-        <ProductTableItem 
+        <ProductTableItem
           name="Feijão"
-          manufacturedDate={new Date('05/01/2022')}
-          expirationDate={new Date('11/11/2022')}
+          manufacturedDate={new Date("05/01/2022")}
+          expirationDate={new Date("11/11/2022")}
           price={10.07}
         />
-        <ProductTableItem 
+        <ProductTableItem
           name="Macarrão"
-          manufacturedDate={new Date('05/01/2022')}
-          expirationDate={new Date('01/07/2023')}
+          manufacturedDate={new Date("05/01/2022")}
+          expirationDate={new Date("01/07/2023")}
           price={5.4}
         />
         <ProductTableItem
           name="Corda 5M"
-          manufacturedDate={new Date('05/01/2022')}
+          manufacturedDate={new Date("05/01/2022")}
           expirationDate={null}
           price={24}
         />
       </tbody>
     </table>
-  )
+  );
 }

@@ -1,73 +1,63 @@
 import { Pen, Trash } from "phosphor-react";
 
 interface ProductProps {
-  name: string
-  manufacturedDate: Date
-  expirationDate: Date | null
-  price: number
+  name: string;
+  manufacturedDate: Date;
+  expirationDate: Date | null;
+  price: number;
 }
 
 export function ProductTableItem({
-  name, 
+  name,
   manufacturedDate,
-  expirationDate, 
-  price
+  expirationDate,
+  price,
 }: ProductProps) {
-
   function formatDate(date: Date | null): string {
-    if(date == null)
-      return "-"
+    if (date == null) return "-";
 
-    const day = date.getDate()
-    const month = date.getMonth() + 1
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
 
     const formatedDate = [
-      day >= 10 ? day : '0' + day,
-      month >= 10 ? month : '0' + month,
+      day >= 10 ? day : "0" + day,
+      month >= 10 ? month : "0" + month,
       date.getFullYear(),
-    ]
+    ];
 
-    return formatedDate.join('/')
+    return formatedDate.join("/");
   }
 
   function formatPrice(price: number): string {
-    const integerPart = Math.trunc(price)
-    const decimalPart = Math.trunc((price - Math.trunc(price)) * 100)
+    const integerPart = Math.trunc(price);
+    const decimalPart = Math.trunc((price - Math.trunc(price)) * 100);
 
     const formatedPrice = [
-      'R$ ',
+      "R$ ",
       integerPart,
-      ',',
-      decimalPart >= 10 ? decimalPart : '0' + decimalPart
-    ]
+      ",",
+      decimalPart >= 10 ? decimalPart : "0" + decimalPart,
+    ];
 
-    return formatedPrice.join('')
+    return formatedPrice.join("");
   }
 
   return (
     <tr className="bg-slate-600 h-8">
-      <td>
-        {name}
-      </td>
-      <td>
-        {formatDate(manufacturedDate)}
-      </td>
-      <td>
-        {formatDate(expirationDate)}
-      </td>
-      <td>
-        {formatPrice(price)}
-      </td>
+      <td>{name}</td>
+      <td>{formatDate(manufacturedDate)}</td>
+      <td>{formatDate(expirationDate)}</td>
+      <td>{formatPrice(price)}</td>
       <td>
         <button className="hover:text-blue-400">
-          <Pen/>
+          <Pen />
         </button>
       </td>
       <td>
         <button className="hover:text-red-400">
-          <Trash/>
+          <Trash />
         </button>
       </td>
     </tr>
-  )
+  );
 }
