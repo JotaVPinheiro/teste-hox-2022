@@ -1,6 +1,6 @@
-import { ProductTableItem } from "./ProductTableItem";
+import { ProductsTableItem } from "./ProductsTableItem";
 
-export function ProductTable() {
+export function ProductsTable() {
   return (
     <table className="w-full h-min table-auto border-collapse text-left">
       <thead className="pl-">
@@ -14,19 +14,19 @@ export function ProductTable() {
         </tr>
       </thead>
       <tbody>
-        <ProductTableItem
+        <ProductsTableItem
           name="Feijão"
           manufacturedDate={new Date("05/01/2022")}
           expirationDate={new Date("11/11/2022")}
           price={10.07}
         />
-        <ProductTableItem
+        <ProductsTableItem
           name="Macarrão"
           manufacturedDate={new Date("05/01/2022")}
           expirationDate={new Date("01/07/2023")}
           price={5.4}
         />
-        <ProductTableItem
+        <ProductsTableItem
           name="Corda 5M"
           manufacturedDate={new Date("05/01/2022")}
           expirationDate={null}

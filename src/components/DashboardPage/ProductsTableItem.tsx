@@ -7,7 +7,7 @@ interface ProductProps {
   price: number;
 }
 
-export function ProductTableItem({
+export function ProductsTableItem({
   name,
   manufacturedDate,
   expirationDate,
