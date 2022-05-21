@@ -3,13 +3,17 @@ import { Pen, Trash } from "phosphor-react";
 interface ProductProps {
   name: string;
   manufacturedDate: Date;
+  perishable: boolean
   expirationDate: Date | null;
   price: number;
+  productId: number;
 }
 
 export function ProductsTableItem({
+  productId,
   name,
   manufacturedDate,
+  perishable,
   expirationDate,
   price,
 }: ProductProps) {
@@ -46,7 +50,7 @@ export function ProductsTableItem({
     <tr className="bg-slate-600 h-8">
       <td>{name}</td>
       <td>{formatDate(manufacturedDate)}</td>
-      <td>{formatDate(expirationDate)}</td>
+      <td>{perishable ? formatDate(expirationDate) : '-'}</td>
       <td>{formatPrice(price)}</td>
       <td>
         <button className="hover:text-blue-400">
