@@ -1,4 +1,5 @@
 import { Pen, Trash } from "phosphor-react";
+import { api } from "../../lib/api";
 
 interface ProductProps {
   name: string;
@@ -17,6 +18,11 @@ export function ProductsTableItem({
   expirationDate,
   price,
 }: ProductProps) {
+
+  async function handleDelete() {
+    await api.delete(`/products/${productId}`)
+  }
+
   function formatDate(date: Date | null): string {
     if (date == null) return "-";
 
@@ -58,7 +64,7 @@ export function ProductsTableItem({
         </button>
       </td>
       <td>
-        <button className="hover:text-red-400">
+        <button onClick={handleDelete} className="hover:text-red-400">
           <Trash />
         </button>
       </td>
