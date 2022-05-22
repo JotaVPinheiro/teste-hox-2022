@@ -70,6 +70,7 @@ export function ProductsTable() {
 
           {getPaginationGroup().map((currPage) => (
             <button
+              key={currPage}
               onClick={() => handleChangePage(currPage)}
               disabled={currPage === page}
             >
