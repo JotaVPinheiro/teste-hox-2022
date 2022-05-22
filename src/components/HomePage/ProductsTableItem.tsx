@@ -19,11 +19,10 @@ export function ProductsTableItem({
 
   async function handleDeleteProduct() {
     try {
-      console.log(id);
       await api.delete(`/products/${id}`);
       dispatch(deleteProduct(id as number));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -32,7 +31,10 @@ export function ProductsTableItem({
   }
 
   function formatDate(date: Date | string): string {
-    if (typeof date === "string") date = new Date(date);
+    if (typeof date === "string") {
+      date = new Date(date);
+      date.setTime(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+    }
 
     const day = date.getDate();
     const month = date.getMonth() + 1;

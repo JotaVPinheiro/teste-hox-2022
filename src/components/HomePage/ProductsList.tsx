@@ -15,7 +15,7 @@ export function ProductList() {
         const { data: products } = await api.get("/products");
         dispatch(setProducts(products));
       } catch (error) {
-        console.log(error);
+        console.error(error);
       }
     }
 

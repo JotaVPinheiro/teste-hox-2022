@@ -43,7 +43,7 @@ export function CreateProductForm() {
       dispatch(addProduct(product));
       setValues(initialState);
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 

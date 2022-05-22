@@ -34,12 +34,11 @@ export function EditProductItem({
         Number(values.price)
       );
       product.id = id;
-      console.log(product);
 
       await api.put(`/products/${id}`, product);
       dispatch(updateProduct(product));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -48,9 +47,11 @@ export function EditProductItem({
     setValues({ ...values, [name]: value });
   }
 
-  function formatDate(date: Date | string): string {
-    console.log(date);
-    if (typeof date === "string") date = new Date(date);
+  function formatDate(date: Date | string): string | number {
+    if (typeof date === "string") {
+      date = new Date(date);
+      date.setTime(date.getTime() + date.getTimezoneOffset() * 60 * 1000);
+    }
 
     const day = date.getDate();
     const month = date.getMonth() + 1;
