@@ -23,7 +23,6 @@ export function EditProductItem({
   const [values, setValues] = useState(initialState);
 
   async function handleEditProduct() {
-    console.log(values);
     try {
       await api.patch(`/products/${productId}`, values);
     } catch (error) {

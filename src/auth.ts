@@ -4,7 +4,6 @@ interface LoginProps {
 }
 
 export function verifyLogin({ email, password }: LoginProps) {
-  console.log({ email, password });
   if (email != "admin@hox.rs" || password != "admin") return null;
 
   const token = "me_contrata.por.favor";
