@@ -1,5 +1,14 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
-import { persistStore, persistReducer } from "redux-persist";
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from "redux-persist";
 import storage from "redux-persist/lib/storage";
 
 import userReducer from "./userSlice";
@@ -17,6 +26,22 @@ const store = configureStore({
     user: persistedUserReducer,
     products: productsReducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [
+          FLUSH,
+          REHYDRATE,
+          PAUSE,
+          PERSIST,
+          PURGE,
+          REGISTER,
+          "products/updateProduct",
+          "products/addProduct",
+        ],
+        ignoredPaths: ["products"],
+      },
+    }),
 });
 
 const persistor = persistStore(store);
