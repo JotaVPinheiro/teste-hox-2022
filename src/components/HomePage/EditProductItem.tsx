@@ -1,38 +1,67 @@
 import { FloppyDisk } from "phosphor-react";
 import { useState } from "react";
 import { api } from "../../lib/api";
-
-import { ProductProps } from "./ProductsTableItem";
+import Product from "../../models/Product";
+import { useAppDispatch } from "../../redux/hooks";
+import { updateProduct } from "../../redux/productsSlice";
 
 export function EditProductItem({
-  productId,
+  id,
   name,
   manufacturedDate,
   perishable,
   expirationDate,
   price,
-}: ProductProps) {
+}: Product) {
   const initialState = {
     name,
-    manufacturedDate,
+    manufacturedDate: formatDate(manufacturedDate),
     perishable,
-    expirationDate,
+    expirationDate: formatDate(expirationDate || ""),
     price,
   };
 
   const [values, setValues] = useState(initialState);
+  const dispatch = useAppDispatch();
 
   async function handleEditProduct() {
     try {
-      await api.patch(`/products/${productId}`, values);
+      const product = new Product(
+        values.name,
+        new Date(values.manufacturedDate),
+        values.perishable,
+        new Date(values.expirationDate || ""),
+        Number(values.price)
+      );
+      product.id = id;
+      console.log(product);
+
+      await api.put(`/products/${id}`, product);
+      dispatch(updateProduct(product));
     } catch (error) {
       console.log(error);
     }
   }
 
-  function onChange(event: any) {
+  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
+  }
+
+  function formatDate(date: Date | string): string {
+    console.log(date);
+    if (typeof date === "string") date = new Date(date);
+
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+
+    const formatedDate = [
+      date.getFullYear(),
+      month >= 10 ? month : "0" + month,
+      day >= 10 ? day : "0" + day,
+    ];
+
+    return formatedDate.join("-");
   }
 
   return (
@@ -53,7 +82,7 @@ export function EditProductItem({
           name="manufacturedDate"
           type="date"
           value={values.manufacturedDate}
-          max={values.expirationDate}
+          max={values.expirationDate ? values.expirationDate : undefined}
           onChange={onChange}
         />
       </td>
@@ -63,7 +92,7 @@ export function EditProductItem({
             id="expirationDate"
             name="expirationDate"
             type="date"
-            value={values.expirationDate}
+            value={values.expirationDate ? values.expirationDate : undefined}
             min={values.manufacturedDate}
             onChange={onChange}
           />
@@ -79,6 +108,7 @@ export function EditProductItem({
           placeholder="Preço"
           value={values.price}
           min={0}
+          step={0.01}
           onChange={onChange}
         />
       </td>

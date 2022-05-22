@@ -1,37 +1,50 @@
 import { useState } from "react";
 import { api } from "../../lib/api";
+import Product from "../../models/Product";
+import { useAppDispatch } from "../../redux/hooks";
+import { addProduct } from "../../redux/productsSlice";
 
 const initialState = {
   name: "",
   manufacturedDate: "",
   perishable: false,
   expirationDate: "",
-  price: "",
+  price: 0,
 };
 
 export function CreateProductForm() {
   const [values, setValues] = useState(initialState);
+  const dispatch = useAppDispatch();
 
-  function onCheckboxChange(event: any) {
+  function onCheckboxChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { checked, name } = event.target;
     setValues({ ...values, [name]: checked });
   }
 
-  function onChange(event: any) {
+  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
   }
 
-  async function handleCreateProduct(event: any) {
+  async function handleCreateProduct(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
     try {
-      await api.post("/products", values);
+      const product = new Product(
+        values.name,
+        new Date(values.manufacturedDate),
+        values.perishable,
+        new Date(values.expirationDate),
+        Number(values.price)
+      );
+
+      const { data: { id } } = await api.post("/products", product);
+      product.id = id
+
+      dispatch(addProduct(product));
+      setValues(initialState);
     } catch (error) {
       console.log(error);
     }
-
-    setValues(initialState);
   }
 
   return (
@@ -87,6 +100,7 @@ export function CreateProductForm() {
           placeholder="Preço"
           value={values.price}
           min={0}
+          step={0.01}
           onChange={onChange}
           required
         />

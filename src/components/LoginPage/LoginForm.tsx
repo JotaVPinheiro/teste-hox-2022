@@ -1,8 +1,8 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from "react";
 import { verifyLogin } from "../../auth";
 import { logIn } from "../../redux/userSlice";
 import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../redux/hooks";
 
 function initialState() {
   return { email: "", password: "" };
@@ -10,10 +10,10 @@ function initialState() {
 
 export function LoginForm() {
   const [values, setValues] = useState(initialState);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  function handleLogin(event: any) {
+  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     const token = verifyLogin(values);
 
     if (!token) {
@@ -25,7 +25,7 @@ export function LoginForm() {
     navigate("/");
   }
 
-  function onChange(event: any) {
+  function onChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
     setValues({ ...values, [name]: value });

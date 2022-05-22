@@ -1,9 +1,9 @@
 import { SignOut } from "phosphor-react";
-import { useDispatch } from "react-redux";
+import { useAppDispatch } from "../../redux/hooks";
 import { logOut } from "../../redux/userSlice";
 
 export function PageHeader() {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
 
   function handleLogout() {
     dispatch(logOut());

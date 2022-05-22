@@ -1,29 +1,30 @@
 import { Pen, Trash, XCircle } from "phosphor-react";
 import { useState } from "react";
 import { api } from "../../lib/api";
+import Product from "../../models/Product";
+import { useAppDispatch } from "../../redux/hooks";
 import { EditProductItem } from "./EditProductItem";
-
-export interface ProductProps {
-  name: string;
-  manufacturedDate: string;
-  perishable: boolean;
-  expirationDate: string;
-  price: number;
-  productId: number;
-}
+import { deleteProduct } from "../../redux/productsSlice";
 
 export function ProductsTableItem({
-  productId,
+  id,
   name,
   manufacturedDate,
   perishable,
   expirationDate,
   price,
-}: ProductProps) {
+}: Product) {
   const [isEditing, setIsEditing] = useState(false);
+  const dispatch = useAppDispatch();
 
   async function handleDeleteProduct() {
-    await api.delete(`/products/${productId}`);
+    try {
+      console.log(id);
+      await api.delete(`/products/${id}`);
+      dispatch(deleteProduct(id as number));
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   function handleEditProduct() {
@@ -31,8 +32,7 @@ export function ProductsTableItem({
   }
 
   function formatDate(date: Date | string): string {
-    if (typeof date == 'string')
-      date = new Date(date)
+    if (typeof date === "string") date = new Date(date);
 
     const day = date.getDate();
     const month = date.getMonth() + 1;
@@ -65,7 +65,7 @@ export function ProductsTableItem({
       <tr className="bg-slate-600 h-8">
         <td>{name}</td>
         <td>{formatDate(manufacturedDate)}</td>
-        <td>{perishable ? formatDate(expirationDate) : "-"}</td>
+        <td>{perishable ? formatDate(expirationDate as Date) : "-"}</td>
         <td>{formatPrice(price)}</td>
         <td>
           <button onClick={handleEditProduct}>
@@ -84,8 +84,8 @@ export function ProductsTableItem({
       </tr>
       {isEditing ? (
         <EditProductItem
-          key={productId}
-          productId={productId}
+          key={id}
+          id={id}
           name={name}
           manufacturedDate={manufacturedDate}
           perishable={perishable}
