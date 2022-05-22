@@ -22,6 +22,8 @@ export function EditProductItem({
   };
 
   const [values, setValues] = useState(initialState);
+  const [isEditing, setIsEditing] = useState(true);
+
   const dispatch = useAppDispatch();
 
   async function handleEditProduct() {
@@ -37,6 +39,7 @@ export function EditProductItem({
 
       await api.put(`/products/${id}`, product);
       dispatch(updateProduct(product));
+      setIsEditing(false);
     } catch (error) {
       console.error(error);
     }
@@ -66,62 +69,70 @@ export function EditProductItem({
   }
 
   return (
-    <tr className="bg-slate-700 h-8 ">
-      <td>
-        <input
-          id="name"
-          name="name"
-          type="text"
-          placeholder="Nome do produto"
-          value={values.name}
-          onChange={onChange}
-        />
-      </td>
-      <td>
-        <input
-          id="manufacturedDate"
-          name="manufacturedDate"
-          type="date"
-          value={values.manufacturedDate}
-          max={values.expirationDate ? values.expirationDate : undefined}
-          onChange={onChange}
-        />
-      </td>
-      <td>
-        {perishable ? (
-          <input
-            id="expirationDate"
-            name="expirationDate"
-            type="date"
-            value={values.expirationDate ? values.expirationDate : undefined}
-            min={values.manufacturedDate}
-            onChange={onChange}
-          />
-        ) : (
-          "-"
-        )}
-      </td>
-      <td>
-        <input
-          id="price"
-          name="price"
-          type="number"
-          placeholder="Preço"
-          value={values.price}
-          min={0}
-          step={0.01}
-          onChange={onChange}
-        />
-      </td>
-      <td>
-        <button>
-          <FloppyDisk
-            onClick={handleEditProduct}
-            className="hover:text-blue-400"
-          />
-        </button>
-      </td>
-      <td></td>
-    </tr>
+    <>
+      {isEditing ? (
+        <tr className="bg-slate-700 h-8 ">
+          <td>
+            <input
+              id="name"
+              name="name"
+              type="text"
+              placeholder="Nome do produto"
+              value={values.name}
+              onChange={onChange}
+            />
+          </td>
+          <td>
+            <input
+              id="manufacturedDate"
+              name="manufacturedDate"
+              type="date"
+              value={values.manufacturedDate}
+              max={values.expirationDate ? values.expirationDate : undefined}
+              onChange={onChange}
+            />
+          </td>
+          <td>
+            {perishable ? (
+              <input
+                id="expirationDate"
+                name="expirationDate"
+                type="date"
+                value={
+                  values.expirationDate ? values.expirationDate : undefined
+                }
+                min={values.manufacturedDate}
+                onChange={onChange}
+              />
+            ) : (
+              "-"
+            )}
+          </td>
+          <td>
+            <input
+              id="price"
+              name="price"
+              type="number"
+              placeholder="Preço"
+              value={values.price}
+              min={0}
+              step={0.01}
+              onChange={onChange}
+            />
+          </td>
+          <td>
+            <button>
+              <FloppyDisk
+                onClick={handleEditProduct}
+                className="hover:text-blue-400"
+              />
+            </button>
+          </td>
+          <td></td>
+        </tr>
+      ) : (
+        ""
+      )}
+    </>
   );
 }
