@@ -22,15 +22,20 @@ export function CreateProductForm() {
     setValues({ ...values, [name]: value });
   }
 
-  async function handleSubmitForm(event: any) {
+  async function handleCreateProduct(event: any) {
     event.preventDefault();
 
-    await api.post("/products", values);
+    try {
+      await api.post("/products", values);
+    } catch (error) {
+      console.log(error);
+    }
+
     setValues(initialState);
   }
 
   return (
-    <form onSubmit={handleSubmitForm}>
+    <form onSubmit={handleCreateProduct}>
       <fieldset className="flex flex-col justify-center gap-3 p-10">
         <span className="flex justify-center text-3xl pb-6">
           Cadastrar produto
