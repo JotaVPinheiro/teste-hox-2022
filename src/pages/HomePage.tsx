@@ -1,6 +1,6 @@
-import { CreateProductForm } from "./CreateProductForm";
-import { PageHeader } from "./PageHeader";
-import { ProductsTable } from "./ProductsTable";
+import { CreateProductForm } from "../components/HomePage/CreateProductForm";
+import { PageHeader } from "../components/HomePage/PageHeader";
+import { ProductsTable } from "../components/HomePage/ProductsTable";
 
 export function HomePage() {
   return (

@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 
-import { HomePage } from "./components/HomePage";
-import { LoginPage } from "./components/LoginPage";
+import { HomePage } from "./pages/HomePage";
+import { LoginPage } from "./pages/LoginPage";
 import { selectUser } from "./redux/userSlice";
 
 interface PrivateRouteProps {
