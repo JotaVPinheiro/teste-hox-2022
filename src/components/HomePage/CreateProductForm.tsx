@@ -63,7 +63,7 @@ export function CreateProductForm() {
           Cadastrar produto
         </span>
 
-        <div className="pb-2">
+        <div>
           <label className="text-sm" htmlFor="email">
             Nome do produto:
           </label>
@@ -90,7 +90,7 @@ export function CreateProductForm() {
             max={values.expirationDate}
             onChange={onChange}
             required
-            className="rounded-lg ring-[1px] ring-gray-600 placeholder:text-gray-500 text-sm text-white p-2 bg-transparent hover:ring-gray-500 focus:ring-indigo-600 focus:ring-2 outline-none"
+            className="w-full rounded-lg ring-[1px] ring-gray-600 placeholder:text-gray-500 text-sm text-white p-2 bg-transparent hover:ring-gray-500 focus:ring-indigo-600 focus:ring-2 outline-none"
           />
         </div>
 
@@ -121,7 +121,7 @@ export function CreateProductForm() {
             onChange={onChange}
             required={values.perishable}
             disabled={!values.perishable}
-            className="rounded-lg ring-[1px] ring-gray-600 placeholder:text-gray-500 text-sm text-white p-2 bg-transparent hover:ring-gray-500 focus:ring-indigo-600 focus:ring-2 outline-none disabled:ring-gray-700 disabled:text-gray-700 transition-colors"
+            className="w-full rounded-lg ring-[1px] ring-gray-600 placeholder:text-gray-500 text-sm text-white p-2 bg-transparent hover:ring-gray-500 focus:ring-indigo-600 focus:ring-2 outline-none disabled:ring-gray-700 disabled:text-gray-700 transition-colors"
           />
         </div>
 
@@ -145,7 +145,7 @@ export function CreateProductForm() {
 
         <button
           type="submit"
-          className="flex justify-center items-center mt-2 w h-12 rounded-lg bg-indigo-600 text-md shadow-md outline-none hover:bg-opacity-50 focus:bg-opacity-50 transition-colors"
+          className="flex justify-center items-center mt-2 w p-3 rounded-lg bg-indigo-600 text-md shadow-md outline-none hover:bg-opacity-50 focus:bg-opacity-50 transition-colors"
         >
           {isLoading ? (
             <CircleNotch weight="bold" className="w-4 h-4 animate-spin" />
