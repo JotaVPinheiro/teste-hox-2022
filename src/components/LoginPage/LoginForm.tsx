@@ -50,7 +50,7 @@ export function LoginForm() {
           onChange={onChange}
           value={values.email}
           placeholder="admin@hox.rs"
-          className="w-full rounded-lg ring-[1px] ring-zinc-600 placeholder:text-zinc-500 text-sm text-white p-3 bg-transparent hover:ring-zinc-500 focus:ring-indigo-500 focus:ring-2 outline-none"
+          className="w-full rounded-lg ring-[1px] ring-gray-600 placeholder:text-gray-500 text-sm text-white p-3 bg-transparent hover:ring-gray-500 focus:ring-indigo-600 focus:ring-2 outline-none"
         />
         <label className="mt-2 text-sm" htmlFor="password">
           Senha:
@@ -62,7 +62,7 @@ export function LoginForm() {
           onChange={onChange}
           value={values.password}
           placeholder="admin"
-          className="w-full rounded-lg ring-[1px] ring-zinc-600 placeholder:text-zinc-500 text-sm text-white p-3 bg-transparent hover:ring-zinc-500 focus:ring-indigo-500 focus:ring-2 outline-none"
+          className="w-full rounded-lg ring-[1px] ring-gray-600 placeholder:text-gray-500 text-sm text-white p-3 bg-transparent hover:ring-gray-500 focus:ring-indigo-600 focus:ring-2 outline-none"
         />
         <button
           type="submit"

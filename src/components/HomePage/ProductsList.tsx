@@ -1,8 +1,9 @@
-import { ProductsTableItem } from "./ProductsTableItem";
 import Product from "../../models/Product";
 
+import { ProductsTableItem } from "./ProductsTableItem";
+
 interface ProductListProps {
-  products: Product[]
+  products: Product[];
 }
 
 export function ProductList({ products }: ProductListProps) {

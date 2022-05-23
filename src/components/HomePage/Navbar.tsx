@@ -17,7 +17,10 @@ export function Navbar() {
         <span className="text-lg font-bold">Página Inicial</span>
       </a>
       <button onClick={handleLogout}>
-        <SignOut weight="bold" className="text-lg hover:text-red-400 transition-colors" />
+        <SignOut
+          weight="bold"
+          className="text-lg hover:text-red-400 transition-colors"
+        />
       </button>
     </header>
   );

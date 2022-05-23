@@ -1,8 +1,11 @@
+import { CaretLeft, CaretRight } from "phosphor-react";
 import { useEffect, useState } from "react";
+
 import { api } from "../../lib/api";
 import Product from "../../models/Product";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { selectProducts, setProducts } from "../../redux/productsSlice";
+
 import { ProductList } from "./ProductsList";
 
 const resultsPerPage = 10;
@@ -33,7 +36,6 @@ export function ProductsTable() {
 
   function getPaginationGroup() {
     const pageCount = Math.ceil(allProducts.length / resultsPerPage);
-
     return [...new Array(pageCount)].map((_, index) => index + 1);
   }
 
@@ -42,28 +44,39 @@ export function ProductsTable() {
   }
 
   return (
-    <div>
-      <table className="w-full h-min table-fixed border-collapse text-left">
-        <thead className="pl-">
-          <tr className="bg-slate-700 h-8 ">
-            <th>Produto</th>
-            <th>Data de fabricação</th>
-            <th>Data de validade</th>
-            <th>Preço</th>
-            <th className="w-8"></th>
-            <th className="w-8"></th>
+    <div className="bg-gray-800 rounded-lg shadow-lg overflow-x-auto">
+      <table className="table table-fixed text-left w-full">
+        <thead className="table-header-group bg-indigo-600 h-10">
+          <tr className="table-row">
+            <th scope="col" className="table-cell px-6">
+              Produto
+            </th>
+            <th scope="col" className="table-cell px-6">
+              Data de fabricação
+            </th>
+            <th scope="col" className="table-cell px-6">
+              Data de validade
+            </th>
+            <th scope="col" className="table-cell px-6">
+              Preço
+            </th>
+            <th scope="col" className="table-cell w-8 px-4"></th>
+            <th scope="col" className="table-cell w-8 pr-8"></th>
           </tr>
         </thead>
-        <tbody>
+        <tbody className="table-row-group">
           <ProductList products={products} />
         </tbody>
       </table>
+
       {allProducts.length <= resultsPerPage ? (
         ""
       ) : (
-        <div className="bg-green-500 flex justify-center gap-2">
+        <div className="bg-indigo-600 flex justify-center items-center gap-2">
           {page > 1 ? (
-            <button onClick={() => handleChangePage(page - 1)}>{"<"}</button>
+            <button onClick={() => handleChangePage(page - 1)}>
+              <CaretLeft />
+            </button>
           ) : (
             ""
           )}
@@ -73,13 +86,16 @@ export function ProductsTable() {
               key={currPage}
               onClick={() => handleChangePage(currPage)}
               disabled={currPage === page}
+              className="disabled:text-gray-400"
             >
               {currPage}
             </button>
           ))}
 
           {page < Math.ceil(allProducts.length / resultsPerPage) ? (
-            <button onClick={() => handleChangePage(page + 1)}>{">"}</button>
+            <button onClick={() => handleChangePage(page + 1)}>
+              <CaretRight />
+            </button>
           ) : (
             ""
           )}

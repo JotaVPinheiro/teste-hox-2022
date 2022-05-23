@@ -71,8 +71,8 @@ export function EditProductItem({
   return (
     <>
       {isEditing ? (
-        <tr className="bg-slate-700 h-8 ">
-          <td>
+        <tr className="table-row bg-gray-900 h-10 ">
+          <td className="table-cell px-6">
             <input
               id="name"
               name="name"
@@ -80,9 +80,10 @@ export function EditProductItem({
               placeholder="Nome do produto"
               value={values.name}
               onChange={onChange}
+              className="bg-transparent border-b"
             />
           </td>
-          <td>
+          <td className="table-cell px-6">
             <input
               id="manufacturedDate"
               name="manufacturedDate"
@@ -90,9 +91,10 @@ export function EditProductItem({
               value={values.manufacturedDate}
               max={values.expirationDate ? values.expirationDate : undefined}
               onChange={onChange}
+              className="w-36 bg-transparent border-b"
             />
           </td>
-          <td>
+          <td className="table-cell px-6">
             {perishable ? (
               <input
                 id="expirationDate"
@@ -103,12 +105,14 @@ export function EditProductItem({
                 }
                 min={values.manufacturedDate}
                 onChange={onChange}
+                className="w-36 bg-transparent border-b"
               />
             ) : (
               "-"
             )}
           </td>
-          <td>
+          <td className="table-cell px-6">
+            <span>R$ </span>
             <input
               id="price"
               name="price"
@@ -118,13 +122,14 @@ export function EditProductItem({
               min={0}
               step={0.01}
               onChange={onChange}
+              className="w-20 bg-transparent border-b"
             />
           </td>
-          <td>
+          <td className="table-cell">
             <button>
               <FloppyDisk
                 onClick={handleEditProduct}
-                className="hover:text-blue-400"
+                className="hover:text-indigo-400"
               />
             </button>
           </td>

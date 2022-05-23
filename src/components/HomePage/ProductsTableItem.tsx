@@ -1,10 +1,12 @@
-import { Pen, Trash, XCircle } from "phosphor-react";
 import { useState } from "react";
+import { Pen, Trash, XCircle } from "phosphor-react";
+
 import { api } from "../../lib/api";
-import Product from "../../models/Product";
 import { useAppDispatch } from "../../redux/hooks";
-import { EditProductItem } from "./EditProductItem";
 import { deleteProduct } from "../../redux/productsSlice";
+import Product from "../../models/Product";
+
+import { EditProductItem } from "./EditProductItem";
 
 export function ProductsTableItem({
   id,
@@ -64,22 +66,28 @@ export function ProductsTableItem({
 
   return (
     <>
-      <tr className="bg-slate-600 h-8">
-        <td>{name}</td>
-        <td>{formatDate(manufacturedDate)}</td>
-        <td>{perishable ? formatDate(expirationDate as Date) : "-"}</td>
-        <td>{formatPrice(price)}</td>
-        <td>
+      <tr className="table-row h-10 border-b border-gray-600 hover:bg-gray-700 last-of-type:border-none">
+        <td className="table-cell px-6">{name}</td>
+        <td className="table-cell px-6">{formatDate(manufacturedDate)}</td>
+        <td className="table-cell px-6">
+          {perishable ? formatDate(expirationDate as Date) : "-"}
+        </td>
+        <td className="table-cell px-6">{formatPrice(price)}</td>
+
+        <td className="table-cell">
           <button onClick={handleEditProduct}>
             {isEditing ? (
-              <XCircle className="hover:text-red-400" />
+              <XCircle className="hover:text-red-400 transition-colors" />
             ) : (
-              <Pen className="hover:text-blue-400" />
+              <Pen className="hover:text-indigo-400 transition-colors" />
             )}
           </button>
         </td>
-        <td>
-          <button onClick={handleDeleteProduct} className="hover:text-red-400">
+        <td className="table-cell">
+          <button
+            onClick={handleDeleteProduct}
+            className="hover:text-red-400 transition-colors"
+          >
             <Trash />
           </button>
         </td>
