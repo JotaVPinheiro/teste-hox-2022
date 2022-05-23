@@ -51,13 +51,13 @@ export function ProductsTable() {
             <th scope="col" className="table-cell px-6">
               Produto
             </th>
-            <th scope="col" className="table-cell px-6">
+            <th scope="col" className="table-cell w-44 px-6">
               Data de fabricação
             </th>
-            <th scope="col" className="table-cell px-6">
+            <th scope="col" className="table-cell w-44 px-6">
               Data de validade
             </th>
-            <th scope="col" className="table-cell px-6">
+            <th scope="col" className="table-cell w-32 px-6">
               Preço
             </th>
             <th scope="col" className="table-cell w-8 px-4"></th>

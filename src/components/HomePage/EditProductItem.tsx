@@ -71,7 +71,7 @@ export function EditProductItem({
   return (
     <>
       {isEditing ? (
-        <tr className="table-row bg-gray-900 h-10 ">
+        <tr className="table-row bg-gray-900 h-10">
           <td className="table-cell px-6">
             <input
               id="name"
@@ -80,7 +80,7 @@ export function EditProductItem({
               placeholder="Nome do produto"
               value={values.name}
               onChange={onChange}
-              className="bg-transparent border-b"
+              className="w-full bg-transparent border-b"
             />
           </td>
           <td className="table-cell px-6">
@@ -122,14 +122,14 @@ export function EditProductItem({
               min={0}
               step={0.01}
               onChange={onChange}
-              className="w-20 bg-transparent border-b"
+              className="w-14 bg-transparent border-b"
             />
           </td>
           <td className="table-cell">
             <button>
               <FloppyDisk
                 onClick={handleEditProduct}
-                className="hover:text-indigo-400"
+                className="hover:text-indigo-400 transition-colors"
               />
             </button>
           </td>

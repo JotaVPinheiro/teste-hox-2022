@@ -6,11 +6,11 @@ export function HomePage() {
   return (
     <>
       <Navbar />
-      <div className="w-screen h-full flex">
-        <div className="mt-10 mx-12">
+      <div className="max-w-screen h-full flex justify-center items-center flex-col-reverse xl:flex-row xl:items-start">
+        <div className="m-10 max-w-4xl">
           <ProductsTable />
         </div>
-        <div className="mt-10 mx-12 h-min bg-gray-800">
+        <div className="m-10 w-96 bg-gray-800">
           <CreateProductForm />
         </div>
       </div>

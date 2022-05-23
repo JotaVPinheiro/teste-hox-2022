@@ -12,7 +12,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="w-screen h-14 bg-indigo-600 flex items-center p-4 justify-between">
+    <header className="w-full h-14 bg-indigo-600 flex items-center p-4 justify-between">
       <a href="">
         <span className="text-lg font-bold">Página Inicial</span>
       </a>

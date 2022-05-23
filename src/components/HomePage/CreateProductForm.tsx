@@ -49,7 +49,7 @@ export function CreateProductForm() {
 
   return (
     <form onSubmit={handleCreateProduct}>
-      <fieldset className="flex flex-col justify-center gap-3 p-10">
+      <fieldset className="flex flex-col justify-center gap-3 p-10 w-96">
         <span className="flex justify-center text-3xl pb-6">
           Cadastrar produto
         </span>
