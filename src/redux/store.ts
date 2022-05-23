@@ -38,6 +38,7 @@ const store = configureStore({
           REGISTER,
           "products/updateProduct",
           "products/addProduct",
+          "products/setProductsOrder"
         ],
         ignoredPaths: ["products"],
       },

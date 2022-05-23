@@ -2,9 +2,19 @@ import { CaretLeft, CaretRight } from "phosphor-react";
 import { useEffect, useState } from "react";
 
 import { api } from "../../lib/api";
-import Product from "../../models/Product";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
-import { selectProducts, setProducts } from "../../redux/productsSlice";
+import {
+  selectOrder,
+  selectProductsCount,
+  setProducts,
+  setProductsOrder,
+} from "../../redux/productsSlice";
+import {
+  OrderProducts,
+  OrderProductsDesc,
+  OrderProductsFunction,
+  OrderProductsOption,
+} from "../../utils/orderProducts";
 
 import { ProductList } from "./ProductsList";
 
@@ -15,11 +25,8 @@ export function ProductsTable() {
 
   const [page, setPage] = useState(1);
 
-  const allProducts: Product[] = useAppSelector(selectProducts) || [];
-  const products =
-    allProducts.length <= resultsPerPage
-      ? allProducts
-      : allProducts.slice((page - 1) * 10, page * 10);
+  const allProductsCount = useAppSelector(selectProductsCount) || 0;
+  const currentOrder = useAppSelector(selectOrder);
 
   useEffect(() => {
     async function getProducts() {
@@ -35,12 +42,27 @@ export function ProductsTable() {
   }, []);
 
   function getPaginationGroup() {
-    const pageCount = Math.ceil(allProducts.length / resultsPerPage);
+    const pageCount = Math.ceil(allProductsCount / resultsPerPage);
     return [...new Array(pageCount)].map((_, index) => index + 1);
   }
 
   function handleChangePage(page: number) {
     setPage(page);
+  }
+
+  function handleOrderProducts(
+    order: OrderProductsOption,
+    currentOrder: OrderProductsFunction
+  ) {
+    const selectedOrder = OrderProducts[order];
+    const selectedOrderDesc = OrderProductsDesc[order];
+
+    if (selectedOrder === currentOrder) {
+      dispatch(setProductsOrder(selectedOrderDesc));
+      return;
+    }
+
+    dispatch(setProductsOrder(selectedOrder));
   }
 
   return (
@@ -49,27 +71,47 @@ export function ProductsTable() {
         <thead className="table-header-group bg-indigo-600 h-10">
           <tr className="table-row">
             <th scope="col" className="table-cell px-6">
-              Produto
+              <button
+                onClick={() => handleOrderProducts("byName", currentOrder)}
+              >
+                Produto
+              </button>
             </th>
             <th scope="col" className="table-cell w-44 px-6">
-              Data de fabricação
+              <button
+                onClick={() =>
+                  handleOrderProducts("byManufacturedDate", currentOrder)
+                }
+              >
+                Data de fabricação
+              </button>
             </th>
             <th scope="col" className="table-cell w-44 px-6">
-              Data de validade
+              <button
+                onClick={() =>
+                  handleOrderProducts("byExpirationDate", currentOrder)
+                }
+              >
+                Data de vencimento
+              </button>
             </th>
             <th scope="col" className="table-cell w-32 px-6">
-              Preço
+              <button
+                onClick={() => handleOrderProducts("byPrice", currentOrder)}
+              >
+                Preço
+              </button>
             </th>
             <th scope="col" className="table-cell w-8 px-4"></th>
             <th scope="col" className="table-cell w-8 pr-8"></th>
           </tr>
         </thead>
         <tbody className="table-row-group">
-          <ProductList products={products} />
+          <ProductList />
         </tbody>
       </table>
 
-      {allProducts.length <= resultsPerPage ? (
+      {allProductsCount <= resultsPerPage ? (
         ""
       ) : (
         <div className="bg-indigo-600 flex justify-center items-center gap-2">
@@ -92,7 +134,7 @@ export function ProductsTable() {
             </button>
           ))}
 
-          {page < Math.ceil(allProducts.length / resultsPerPage) ? (
+          {page < Math.ceil(allProductsCount / resultsPerPage) ? (
             <button onClick={() => handleChangePage(page + 1)}>
               <CaretRight />
             </button>

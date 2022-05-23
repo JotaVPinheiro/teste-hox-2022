@@ -1,12 +1,14 @@
 import Product from "../../models/Product";
+import { useAppSelector } from "../../redux/hooks";
+import { selectOrder, selectProducts } from "../../redux/productsSlice";
 
 import { ProductsTableItem } from "./ProductsTableItem";
 
-interface ProductListProps {
-  products: Product[];
-}
+export function ProductList() {
+  const products = [...useAppSelector(selectProducts)] || [];
+  const currentOrder = useAppSelector(selectOrder);
+  products.sort(currentOrder);
 
-export function ProductList({ products }: ProductListProps) {
   return (
     <>
       {products == []
