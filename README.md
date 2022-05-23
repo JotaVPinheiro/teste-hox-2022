@@ -2,19 +2,22 @@
 
 ## Como rodar o projeto
 
-### Passo 1: Instalar as dependências
+### Passo 1: Configurar .env.local (só renomear, nesse caso)
+Renomeie o arquivo ```.env.example``` para ```.env.local```
+
+### Passo 2: Instalar as dependências
 
 ```
 npm install
 ```
 
-### Passo 2: Rodar o json-server
+### Passo 3: Rodar o json-server
 
 ```
 npm run server
 ```
 
-### Passo 3: Rodar a aplicação
+### Passo 4: Rodar a aplicação
 
 ```
 npm run dev
