@@ -5,7 +5,10 @@ import { api } from "../../lib/api";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
   selectOrder,
+  selectPage,
   selectProductsCount,
+  selectResultsPerPage,
+  setPage,
   setProducts,
   setProductsOrder,
 } from "../../redux/productsSlice";
@@ -18,15 +21,13 @@ import {
 
 import { ProductList } from "./ProductsList";
 
-const resultsPerPage = 10;
-
 export function ProductsTable() {
   const dispatch = useAppDispatch();
 
-  const [page, setPage] = useState(1);
-
   const allProductsCount = useAppSelector(selectProductsCount) || 0;
   const currentOrder = useAppSelector(selectOrder);
+  const resultsPerPage = useAppSelector(selectResultsPerPage);
+  const currentPage = useAppSelector(selectPage) || 1;
 
   useEffect(() => {
     async function getProducts() {
@@ -47,7 +48,7 @@ export function ProductsTable() {
   }
 
   function handleChangePage(page: number) {
-    setPage(page);
+    dispatch(setPage(page));
   }
 
   function handleOrderProducts(
@@ -115,27 +116,27 @@ export function ProductsTable() {
         ""
       ) : (
         <div className="bg-indigo-600 flex justify-center items-center gap-2">
-          {page > 1 ? (
-            <button onClick={() => handleChangePage(page - 1)}>
+          {currentPage > 1 ? (
+            <button onClick={() => handleChangePage(currentPage - 1)}>
               <CaretLeft />
             </button>
           ) : (
             ""
           )}
 
-          {getPaginationGroup().map((currPage) => (
+          {getPaginationGroup().map((page) => (
             <button
-              key={currPage}
-              onClick={() => handleChangePage(currPage)}
-              disabled={currPage === page}
+              key={page}
+              onClick={() => handleChangePage(page)}
+              disabled={page === currentPage}
               className="disabled:text-gray-400"
             >
-              {currPage}
+              {page}
             </button>
           ))}
 
-          {page < Math.ceil(allProductsCount / resultsPerPage) ? (
-            <button onClick={() => handleChangePage(page + 1)}>
+          {currentPage < Math.ceil(allProductsCount / resultsPerPage) ? (
+            <button onClick={() => handleChangePage(currentPage + 1)}>
               <CaretRight />
             </button>
           ) : (

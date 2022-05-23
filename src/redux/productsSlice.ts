@@ -6,11 +6,15 @@ import { RootState } from "./store";
 interface ProductsSlice {
   data: Product[];
   order: OrderProductsFunction;
+  resultsPerPage: number;
+  page: number;
 }
 
 const initialState: ProductsSlice = {
   data: [],
   order: (product: Product, product_: Product) => 0,
+  resultsPerPage: 10,
+  page: 1,
 };
 
 export const slice = createSlice({
@@ -48,6 +52,9 @@ export const slice = createSlice({
     ) => {
       state.order = order;
     },
+    setPage: (state, { payload: page }: PayloadAction<number>) => {
+      state.page = page;
+    },
   },
 });
 
@@ -57,11 +64,16 @@ export const {
   updateProduct,
   deleteProduct,
   setProductsOrder,
+  setPage,
 } = slice.actions;
 
 export const selectProducts = (state: RootState) => state.products.data;
 export const selectProductsCount = (state: RootState) =>
   state.products.data.length;
+
 export const selectOrder = (state: RootState) => state.products.order;
+export const selectPage = (state: RootState) => state.products.page;
+export const selectResultsPerPage = (state: RootState) =>
+  state.products.resultsPerPage;
 
 export default slice.reducer;

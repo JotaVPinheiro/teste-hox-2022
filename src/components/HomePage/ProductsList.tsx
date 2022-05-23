@@ -1,13 +1,26 @@
 import Product from "../../models/Product";
 import { useAppSelector } from "../../redux/hooks";
-import { selectOrder, selectProducts } from "../../redux/productsSlice";
+import {
+  selectOrder,
+  selectPage,
+  selectProducts,
+  selectResultsPerPage,
+} from "../../redux/productsSlice";
 
 import { ProductsTableItem } from "./ProductsTableItem";
 
 export function ProductList() {
-  const products = [...useAppSelector(selectProducts)] || [];
+  const allProducts = [...useAppSelector(selectProducts)] || [];
   const currentOrder = useAppSelector(selectOrder);
-  products.sort(currentOrder);
+  const currentPage = useAppSelector(selectPage);
+  const resultsPerPage = useAppSelector(selectResultsPerPage);
+
+  allProducts.sort(currentOrder);
+
+  const products =
+    allProducts.length > resultsPerPage
+      ? allProducts.slice((currentPage - 1) * 10, currentPage * 10)
+      : allProducts;
 
   return (
     <>
