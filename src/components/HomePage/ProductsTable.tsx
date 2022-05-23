@@ -65,18 +65,19 @@ export function ProductsTable() {
 
   return (
     <div className="bg-gray-800 rounded-lg shadow-lg overflow-x-auto">
-      <table className="table table-fixed text-left w-full">
-        <thead className="table-header-group bg-indigo-600 h-10">
+      <table className="table text-left">
+        <thead className="table-header-group bg-indigo-600">
           <tr className="table-row">
-            <th scope="col" className="table-cell px-6">
+            <th scope="col" className="table-cell py-2 px-6">
               <button
                 onClick={() => handleOrderProducts("byName", currentOrder)}
               >
                 Produto
               </button>
             </th>
-            <th scope="col" className="table-cell w-44 px-6">
-              <button
+
+            <th scope="col" className="table-cell px-6">
+              <button className="w-max"
                 onClick={() =>
                   handleOrderProducts("byManufacturedDate", currentOrder)
                 }
@@ -84,8 +85,9 @@ export function ProductsTable() {
                 Data de fabricação
               </button>
             </th>
-            <th scope="col" className="table-cell w-44 px-6">
-              <button
+
+            <th scope="col" className="table-cell px-6">
+              <button className="w-max"
                 onClick={() =>
                   handleOrderProducts("byExpirationDate", currentOrder)
                 }
@@ -93,15 +95,18 @@ export function ProductsTable() {
                 Data de vencimento
               </button>
             </th>
-            <th scope="col" className="table-cell w-32 px-6">
+
+            <th scope="col" className="table-cell px-6">
               <button
                 onClick={() => handleOrderProducts("byPrice", currentOrder)}
               >
                 Preço
               </button>
             </th>
-            <th scope="col" className="table-cell w-8 px-4"></th>
-            <th scope="col" className="table-cell w-8 pr-8"></th>
+
+            <th scope="col" className="table-cell px-3"></th>
+
+            <th scope="col" className="table-cell px-3"></th>
           </tr>
         </thead>
         <tbody className="table-row-group">

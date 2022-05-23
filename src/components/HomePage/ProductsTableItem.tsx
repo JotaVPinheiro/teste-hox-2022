@@ -66,15 +66,18 @@ export function ProductsTableItem({
 
   return (
     <>
-      <tr className="table-row h-10 border-b border-gray-600 hover:bg-gray-700 last-of-type:border-none">
-        <td className="table-cell px-6 break-words">{name}</td>
+      <tr className="table-row border-b border-gray-600 hover:bg-gray-700 last-of-type:border-none">
+        <td className="table-cell break-words px-6 py-2">{name}</td>
+
         <td className="table-cell px-6">{formatDate(manufacturedDate)}</td>
+
         <td className="table-cell px-6">
           {perishable ? formatDate(expirationDate as Date) : "-"}
         </td>
+
         <td className="table-cell px-6 break-words">{formatPrice(price)}</td>
 
-        <td className="table-cell">
+        <td className="table-cell px-3">
           <button onClick={handleEditProduct}>
             {isEditing ? (
               <XCircle className="hover:text-red-400 transition-colors" />
@@ -83,7 +86,8 @@ export function ProductsTableItem({
             )}
           </button>
         </td>
-        <td className="table-cell">
+
+        <td className="table-cell px-3">
           <button
             onClick={handleDeleteProduct}
             className="hover:text-red-400 transition-colors"
@@ -92,6 +96,7 @@ export function ProductsTableItem({
           </button>
         </td>
       </tr>
+
       {isEditing ? (
         <EditProductItem
           key={id}

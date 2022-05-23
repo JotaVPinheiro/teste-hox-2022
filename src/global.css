@@ -19,10 +19,6 @@ input::-webkit-inner-spin-button {
   @apply bg-gray-800
 }
 
-html {
-  @apply w-screen overflow-x-hidden
-}
-
 body {
   @apply bg-gray-900 text-gray-200;
 }

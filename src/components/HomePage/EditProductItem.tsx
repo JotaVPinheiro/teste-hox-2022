@@ -73,8 +73,8 @@ export function EditProductItem({
   return (
     <>
       {isEditing ? (
-        <tr className="table-row bg-gray-900 h-10">
-          <td className="table-cell px-6">
+        <tr className="table-row bg-gray-900">
+          <td className="table-cell px-6 py-2">
             <input
               id="name"
               name="name"
@@ -85,6 +85,7 @@ export function EditProductItem({
               className="w-full bg-transparent border-b"
             />
           </td>
+
           <td className="table-cell px-6">
             <input
               id="manufacturedDate"
@@ -93,9 +94,10 @@ export function EditProductItem({
               value={values.manufacturedDate}
               max={values.expirationDate ? values.expirationDate : undefined}
               onChange={onChange}
-              className="w-36 bg-transparent border-b"
+              className="w-[8.5rem] bg-transparent border-b"
             />
           </td>
+
           <td className="table-cell px-6">
             {perishable ? (
               <input
@@ -107,14 +109,14 @@ export function EditProductItem({
                 }
                 min={values.manufacturedDate}
                 onChange={onChange}
-                className="w-36 bg-transparent border-b"
+                className="w-[8.5rem] bg-transparent border-b"
               />
             ) : (
               "-"
             )}
           </td>
+
           <td className="table-cell px-6">
-            <span>R$ </span>
             <input
               id="price"
               name="price"
@@ -127,7 +129,8 @@ export function EditProductItem({
               className="w-14 bg-transparent border-b"
             />
           </td>
-          <td className="table-cell">
+
+          <td className="table-cell px-3">
             <button>
               <FloppyDisk
                 onClick={handleEditProduct}
@@ -135,6 +138,7 @@ export function EditProductItem({
               />
             </button>
           </td>
+
           <td></td>
         </tr>
       ) : (
