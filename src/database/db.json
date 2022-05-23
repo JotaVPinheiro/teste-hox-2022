@@ -1,0 +1,107 @@
+{
+  "products": [
+    {
+      "name": "Bola de basquete",
+      "manufacturedDate": "2021-08-18T00:00:00.000Z",
+      "perishable": false,
+      "price": 45,
+      "id": 1
+    },
+    {
+      "name": "Arroz 5kg",
+      "manufacturedDate": "2022-04-20T00:00:00.000Z",
+      "perishable": true,
+      "expirationDate": "2022-11-20T00:00:00.000Z",
+      "price": 33,
+      "id": 2
+    },
+    {
+      "name": "Feijão 1kg",
+      "manufacturedDate": "2022-04-06T00:00:00.000Z",
+      "perishable": true,
+      "expirationDate": "2022-10-27T00:00:00.000Z",
+      "price": 7,
+      "id": 3
+    },
+    {
+      "name": "Corda 5m",
+      "manufacturedDate": "2021-07-22T00:00:00.000Z",
+      "perishable": false,
+      "price": 22,
+      "id": 4
+    },
+    {
+      "name": "Meias",
+      "manufacturedDate": "2022-03-10T00:00:00.000Z",
+      "perishable": false,
+      "price": 6,
+      "id": 5
+    },
+    {
+      "name": "Bolinho Ana Maria",
+      "manufacturedDate": "2022-04-19T00:00:00.000Z",
+      "perishable": true,
+      "expirationDate": "2022-10-26T00:00:00.000Z",
+      "price": 4,
+      "id": 6
+    },
+    {
+      "name": "Cabo USB",
+      "manufacturedDate": "2022-03-10T00:00:00.000Z",
+      "perishable": false,
+      "price": 16,
+      "id": 7
+    },
+    {
+      "name": "Carrinho de controle remoto",
+      "manufacturedDate": "2022-04-23T00:00:00.000Z",
+      "perishable": false,
+      "price": 150,
+      "id": 8
+    },
+    {
+      "name": "Mouse Multilaser",
+      "manufacturedDate": "2022-05-26T00:00:00.000Z",
+      "perishable": false,
+      "price": 0.5,
+      "id": 9
+    },
+    {
+      "name": "Ventilador",
+      "manufacturedDate": "2022-05-01T00:00:00.000Z",
+      "perishable": false,
+      "price": 175,
+      "id": 10
+    },
+    {
+      "name": "Rede de dormir",
+      "manufacturedDate": "2021-12-16T00:00:00.000Z",
+      "perishable": false,
+      "price": 65,
+      "id": 11
+    },
+    {
+      "name": "Boné",
+      "manufacturedDate": "2022-05-23T00:00:00.000Z",
+      "perishable": false,
+      "price": 12,
+      "id": 12
+    },
+    {
+      "name": "Macarrão",
+      "manufacturedDate": "2022-04-23T00:00:00.000Z",
+      "perishable": true,
+      "expirationDate": "2022-10-23T00:00:00.000Z",
+      "price": 4.5,
+      "id": 13
+    },
+    {
+      "name": "Cigarro Derby Vermelho",
+      "manufacturedDate": "2022-03-17T00:00:00.000Z",
+      "perishable": true,
+      "expirationDate": "2022-09-23T00:00:00.000Z",
+      "price": 6.15,
+      "id": 14
+    }
+  ]
+}
