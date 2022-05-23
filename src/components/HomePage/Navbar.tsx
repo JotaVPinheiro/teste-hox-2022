@@ -1,8 +1,9 @@
 import { SignOut } from "phosphor-react";
+
 import { useAppDispatch } from "../../redux/hooks";
 import { logOut } from "../../redux/userSlice";
 
-export function PageHeader() {
+export function Navbar() {
   const dispatch = useAppDispatch();
 
   function handleLogout() {
@@ -11,12 +12,12 @@ export function PageHeader() {
   }
 
   return (
-    <header className="w-screen h-16 bg-yellow-700 flex items-center p-4 justify-between">
+    <header className="w-screen h-14 bg-indigo-600 flex items-center p-4 justify-between">
       <a href="">
-        <span>Nome do Site</span>
+        <span className="text-lg font-bold">Página Inicial</span>
       </a>
       <button onClick={handleLogout}>
-        <SignOut />
+        <SignOut weight="bold" className="text-lg hover:text-red-400 transition-colors" />
       </button>
     </header>
   );
