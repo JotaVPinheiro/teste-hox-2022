@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { useAppDispatch } from "../../redux/hooks";
-import { logIn } from "../../redux/userSlice";
 import { verifyLogin } from "../../auth";
 
 function initialState() {
@@ -26,7 +25,6 @@ export function LoginForm() {
       return;
     }
 
-    dispatch(logIn(token));
     navigate("/");
   }
 

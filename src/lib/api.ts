@@ -1,5 +1,6 @@
 import axios from "axios";
-const { token } = JSON.parse(localStorage.getItem("persist:root") || "");
+import { getToken } from "../auth";
+const token = getToken();
 
 export const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL,

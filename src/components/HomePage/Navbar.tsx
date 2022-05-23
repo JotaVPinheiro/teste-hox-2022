@@ -1,13 +1,9 @@
 import { SignOut } from "phosphor-react";
-
-import { useAppDispatch } from "../../redux/hooks";
-import { logOut } from "../../redux/userSlice";
+import { setToken } from "../../auth";
 
 export function Navbar() {
-  const dispatch = useAppDispatch();
-
   function handleLogout() {
-    dispatch(logOut());
+    setToken("");
     window.location.reload();
   }
 
