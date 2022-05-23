@@ -15,18 +15,18 @@ export function LoginForm() {
   const navigate = useNavigate();
 
   const [values, setValues] = useState(initialState);
-  const [isLoading, setIsLoading] = useState(false);
+  const [triedToLogin, setTriedToLogin] = useState(false);
 
-  function handleLogin() {
-    setIsLoading(true);
-    const token = verifyLogin(values);
+  async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const token = await verifyLogin(values);
 
     if (!token) {
+      setTriedToLogin(true);
       setValues(initialState);
       return;
     }
 
-    setIsLoading(false);
     dispatch(logIn(token));
     navigate("/");
   }
@@ -51,6 +51,7 @@ export function LoginForm() {
           value={values.email}
           placeholder="admin@hox.rs"
           className="w-full rounded-lg ring-[1px] ring-gray-600 placeholder:text-gray-500 text-sm text-white p-3 bg-transparent hover:ring-gray-500 focus:ring-indigo-600 focus:ring-2 outline-none"
+          required
         />
         <label className="mt-2 text-sm" htmlFor="password">
           Senha:
@@ -63,17 +64,21 @@ export function LoginForm() {
           value={values.password}
           placeholder="admin"
           className="w-full rounded-lg ring-[1px] ring-gray-600 placeholder:text-gray-500 text-sm text-white p-3 bg-transparent hover:ring-gray-500 focus:ring-indigo-600 focus:ring-2 outline-none"
+          required
         />
         <button
           type="submit"
           className="flex justify-center items-center mt-2 w h-12 rounded-lg bg-indigo-600 text-md shadow-md outline-none hover:bg-opacity-50 focus:bg-opacity-50 transition-colors"
         >
-          {isLoading ? (
-            <CircleNotch weight="bold" className="w-4 h-4 animate-spin" />
-          ) : (
-            "Entrar"
-          )}
+          Entrar
         </button>
+        {triedToLogin ? (
+          <span className="flex justify-center text-sm text-red-400">
+            Senha e/ou e-mail incorretos
+          </span>
+        ) : (
+          ""
+        )}
       </fieldset>
     </form>
   );
