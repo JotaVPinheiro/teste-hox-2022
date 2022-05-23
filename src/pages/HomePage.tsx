@@ -10,7 +10,7 @@ export function HomePage() {
         <div className="m-10 max-w-4xl">
           <ProductsTable />
         </div>
-        <div className="m-10 w-96 bg-gray-800">
+        <div className="m-10 bg-gray-800 rounded-lg w-96 shadow-md">
           <CreateProductForm />
         </div>
       </div>

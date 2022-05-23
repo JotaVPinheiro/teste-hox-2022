@@ -40,7 +40,7 @@ export function LoginForm() {
     <form onSubmit={handleLogin}>
       <fieldset className="flex flex-col gap-2 p-10">
         <span className="flex justify-center text-3xl pb-6">Login</span>
-        <label className="text-sm " htmlFor="email">
+        <label className="text-sm" htmlFor="email">
           E-mail:
         </label>
         <input

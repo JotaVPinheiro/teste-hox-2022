@@ -1,9 +1,11 @@
-import { FloppyDisk } from "phosphor-react";
 import { useState } from "react";
+import { FloppyDisk } from "phosphor-react";
+
 import { api } from "../../lib/api";
-import Product from "../../models/Product";
 import { useAppDispatch } from "../../redux/hooks";
 import { updateProduct } from "../../redux/productsSlice";
+
+import Product from "../../models/Product";
 
 export function EditProductItem({
   id,
