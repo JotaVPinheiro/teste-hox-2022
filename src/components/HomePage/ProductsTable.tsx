@@ -4,10 +4,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../lib/api";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import {
-  selectOrder,
-  selectPage,
-  selectProductsCount,
-  selectResultsPerPage,
+  selectProducts,
   setPage,
   setProducts,
   setProductsOrder,
@@ -24,10 +21,10 @@ import { ProductList } from "./ProductsList";
 export function ProductsTable() {
   const dispatch = useAppDispatch();
 
-  const allProductsCount = useAppSelector(selectProductsCount) || 0;
-  const currentOrder = useAppSelector(selectOrder);
-  const resultsPerPage = useAppSelector(selectResultsPerPage);
-  const currentPage = useAppSelector(selectPage) || 1;
+  const { dataLength: allProductsCount } = useAppSelector(selectProducts);
+  const { order: currentOrder } = useAppSelector(selectProducts);
+  const { resultsPerPage } = useAppSelector(selectProducts);
+  const { page: currentPage } = useAppSelector(selectProducts);
 
   useEffect(() => {
     async function getProducts() {

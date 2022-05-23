@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { CircleNotch } from "phosphor-react";
 
 import { useAppDispatch } from "../../redux/hooks";
 import { logIn } from "../../redux/userSlice";

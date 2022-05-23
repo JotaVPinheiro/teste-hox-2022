@@ -1,10 +1,11 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Product from "../models/Product";
-import { OrderProductsFunction, OrderProducts } from "../utils/orderProducts";
+import { OrderProductsFunction } from "../utils/orderProducts";
 import { RootState } from "./store";
 
 interface ProductsSlice {
   data: Product[];
+  dataLength: number;
   order: OrderProductsFunction;
   resultsPerPage: number;
   page: number;
@@ -12,6 +13,7 @@ interface ProductsSlice {
 
 const initialState: ProductsSlice = {
   data: [],
+  dataLength: 1,
   order: (product: Product, product_: Product) => 0,
   resultsPerPage: 10,
   page: 1,
@@ -24,9 +26,11 @@ export const slice = createSlice({
     setProducts: (state, { payload }: PayloadAction<Product[]>) => {
       state.data.length = 0;
       state.data.push(...payload);
+      state.dataLength = state.data.length;
     },
     addProduct: (state, { payload }: PayloadAction<Product>) => {
       state.data.push(payload);
+      state.dataLength++;
     },
     updateProduct: (state, { payload }: PayloadAction<Product>) => {
       const { id, name, manufacturedDate, perishable, expirationDate, price } =
@@ -45,6 +49,7 @@ export const slice = createSlice({
     deleteProduct: (state, { payload: id }: PayloadAction<number>) => {
       const index = state.data.findIndex((product) => product.id === id);
       state.data.splice(index, 1);
+      state.dataLength--;
     },
     setProductsOrder: (
       state,
@@ -67,13 +72,6 @@ export const {
   setPage,
 } = slice.actions;
 
-export const selectProducts = (state: RootState) => state.products.data;
-export const selectProductsCount = (state: RootState) =>
-  state.products.data.length;
-
-export const selectOrder = (state: RootState) => state.products.order;
-export const selectPage = (state: RootState) => state.products.page;
-export const selectResultsPerPage = (state: RootState) =>
-  state.products.resultsPerPage;
+export const selectProducts = (state: RootState) => state.products;
 
 export default slice.reducer;
