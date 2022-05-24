@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { useAppDispatch } from "../../redux/hooks";
 import { verifyLogin } from "../../auth";
 
 function initialState() {
@@ -9,7 +8,6 @@ function initialState() {
 }
 
 export function LoginForm() {
-  const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
   const [values, setValues] = useState(initialState);
@@ -59,7 +57,7 @@ export function LoginForm() {
           type="password"
           onChange={onChange}
           value={values.password}
-          placeholder="admin"
+          placeholder="•••••"
           className="w-full rounded-lg ring-[1px] ring-gray-600 placeholder:text-gray-500 text-sm text-white p-3 bg-transparent hover:ring-gray-500 focus:ring-indigo-600 focus:ring-2 outline-none"
           required
         />

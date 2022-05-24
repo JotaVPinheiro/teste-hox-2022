@@ -22,3 +22,10 @@ npm run server
 ```
 npm run dev
 ```
+## Login
+
+As credenciais para login são:
+```
+E-mail: admin@hox.rs
+Senha: admin
+```

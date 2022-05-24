@@ -157,7 +157,7 @@ export function ProductsTable() {
       {allProductsCount <= resultsPerPage ? (
         ""
       ) : (
-        <div className="bg-indigo-600 flex justify-center items-center gap-2">
+        <div className="bg-indigo-600 flex justify-center items-center py-2 gap-2">
           {currentPage > 1 ? (
             <button onClick={() => handleChangePage(currentPage - 1)}>
               <CaretLeft />
