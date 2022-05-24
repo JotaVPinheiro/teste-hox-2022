@@ -1,4 +1,4 @@
-import { CaretLeft, CaretRight } from "phosphor-react";
+import { CaretLeft, CaretRight, CaretUp, CaretDown } from "phosphor-react";
 import { useEffect, useState } from "react";
 
 import { api } from "../../lib/api";
@@ -25,6 +25,8 @@ export function ProductsTable() {
   const { order: currentOrder } = useAppSelector(selectProducts);
   const { resultsPerPage } = useAppSelector(selectProducts);
   const { page: currentPage } = useAppSelector(selectProducts);
+
+  const [orderType, setOrderType] = useState("");
 
   useEffect(() => {
     async function getProducts() {
@@ -57,9 +59,11 @@ export function ProductsTable() {
 
     if (selectedOrder === currentOrder) {
       dispatch(setProductsOrder(selectedOrderDesc));
+      setOrderType(order + "Desc");
       return;
     }
 
+    setOrderType(order);
     dispatch(setProductsOrder(selectedOrder));
   }
 
@@ -70,37 +74,73 @@ export function ProductsTable() {
           <tr className="table-row">
             <th scope="col" className="table-cell py-2 px-6">
               <button
+                className="flex items-center hover:text-gray-400"
                 onClick={() => handleOrderProducts("byName", currentOrder)}
               >
                 Produto
-              </button>
-            </th>
-
-            <th scope="col" className="table-cell px-6">
-              <button className="w-max"
-                onClick={() =>
-                  handleOrderProducts("byManufacturedDate", currentOrder)
-                }
-              >
-                Data de fabricação
-              </button>
-            </th>
-
-            <th scope="col" className="table-cell px-6">
-              <button className="w-max"
-                onClick={() =>
-                  handleOrderProducts("byExpirationDate", currentOrder)
-                }
-              >
-                Data de vencimento
+                {orderType === "byName" ? <CaretUp className="pl-1" /> : ""}
+                {orderType === "byNameDesc" ? (
+                  <CaretDown className="pl-1" />
+                ) : (
+                  ""
+                )}
               </button>
             </th>
 
             <th scope="col" className="table-cell px-6">
               <button
+                className="w-max flex items-center hover:text-gray-400"
+                onClick={() =>
+                  handleOrderProducts("byManufacturedDate", currentOrder)
+                }
+              >
+                Data de fabricação
+                {orderType === "byManufacturedDate" ? (
+                  <CaretUp className="pl-1" />
+                ) : (
+                  ""
+                )}
+                {orderType === "byManufacturedDateDesc" ? (
+                  <CaretDown className="pl-1" />
+                ) : (
+                  ""
+                )}
+              </button>
+            </th>
+
+            <th scope="col" className="table-cell px-6">
+              <button
+                className="w-max flex items-center hover:text-gray-400"
+                onClick={() =>
+                  handleOrderProducts("byExpirationDate", currentOrder)
+                }
+              >
+                Data de vencimento
+                {orderType === "byExpirationDate" ? (
+                  <CaretUp className="pl-1" />
+                ) : (
+                  ""
+                )}
+                {orderType === "byExpirationDateDesc" ? (
+                  <CaretDown className="pl-1" />
+                ) : (
+                  ""
+                )}
+              </button>
+            </th>
+
+            <th scope="col" className="table-cell px-6">
+              <button
+                className="flex items-center hover:text-gray-400"
                 onClick={() => handleOrderProducts("byPrice", currentOrder)}
               >
                 Preço
+                {orderType === "byPrice" ? <CaretUp className="pl-1" /> : ""}
+                {orderType === "byPriceDesc" ? (
+                  <CaretDown className="pl-1" />
+                ) : (
+                  ""
+                )}
               </button>
             </th>
 
